@@ -1,11 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./components/login";
+import Signup from "./components/signup";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Hi this is a working react app</h1>
-    </div>
-  );
-}
+const App = () => (
+  <div className="container">
+    <Router>
+      <Switch>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route exact path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/">
+          <h1>Sensitive Page</h1>
+        </Route>
+        <Route path="*">
+          <Login />
+        </Route>
+      </Switch>
+    </Router>
+  </div>
+);
 
 export default App;
