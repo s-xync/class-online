@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const HttpStatus = require("http-status-codes");
+const boom = require("boom");
+const path = require("path");
 
 const constants = require("./config/constants");
 
@@ -25,14 +26,24 @@ connection.once("open", () => {
   console.log("MongoDB database connection established successfully");
 });
 
-// // user routes
-// const userRouter = require("./routes/user.routes");
-// app.use("/user", userRouter);
+// Serve the static files from the React app
+app.use(express.static(path.join(__dirname, "/client/build")));
 
-// any routes that does not match above
+// user routes
+const userRouter = require("./routes/user.routes");
+app.use("/api/v1/user", userRouter);
+
 app.get("*", (req, res) => {
-  res.status(HttpStatus.NOT_FOUND).json({ message: "Route Not Found." });
+  // react app entry point
+  res.sendFile(path.join(__dirname + "/client/build/200.html"));
 });
+
+app.post("*", (req, res, next) => {
+  return next(boom.notFound("Route Not Found"));
+});
+
+const errorHandler = require("./middleware/errorHandler.middleware");
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
