@@ -1,6 +1,13 @@
 import axios from "axios";
 
-const makeApiRequest = async (type, url, auth = false, body = {}) => {
+const makeApiRequest = async (
+  type,
+  url,
+  auth = false,
+  body = {},
+  filePresent = false,
+  uploadProgressEventHandler
+) => {
   if (!type || !url) {
     return {
       error: true,
@@ -17,6 +24,8 @@ const makeApiRequest = async (type, url, auth = false, body = {}) => {
     };
   }
 
+  const headers = {};
+  let data;
   let bearerToken = "";
   if (auth) {
     const jwt = localStorage.getItem("jwt");
@@ -28,31 +37,31 @@ const makeApiRequest = async (type, url, auth = false, body = {}) => {
         message: "You have been logged out. Please login again."
       };
     }
+    headers.Authorization = bearerToken;
+  }
+
+  if (filePresent) {
+    headers["Content-Type"] = "multipart/form-data";
+    data = new FormData();
+    Object.keys(body).forEach(key => {
+      data.append(key, body[key]);
+    });
+  } else {
+    data = { ...body };
   }
 
   try {
     let response;
     if (type === "POST") {
-      if (auth) {
-        response = await axios.post(
-          `/${url}`,
-          { ...body },
-          { headers: { Authorization: bearerToken } }
-        );
-      } else {
-        response = await axios.post(`/${url}`, { ...body });
-      }
+      response = await axios.post(`/${url}`, data, {
+        headers,
+        onUploadProgress: uploadProgressEventHandler
+      });
     } else if (type === "GET") {
-      if (auth) {
-        response = await axios.get(`/${url}`, {
-          ...body,
-          headers: { Authorization: bearerToken }
-        });
-      } else {
-        response = await axios.get(`/${url}`, {
-          ...body
-        });
-      }
+      response = await axios.get(`/${url}`, {
+        ...data,
+        headers
+      });
     }
     return {
       error: false,
