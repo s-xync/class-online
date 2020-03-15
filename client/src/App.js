@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/login";
+import VideoDashboard from "./components/video-dashboard";
 
 const App = () => (
   <Router>
@@ -12,7 +13,7 @@ const App = () => (
         <Login />
       </Route>
       <Route exact path="/">
-        <h1>Sensitive Page</h1>
+        <VideoDashboard />
       </Route>
       <Route path="*">
         <Login />

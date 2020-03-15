@@ -30,6 +30,11 @@ class Login extends Component {
     if (this.props.match.path.includes("signup")) {
       this.setState({ activeTab: "" });
     }
+
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      this.props.history.push("/");
+    }
   }
 
   tabClickHandler = tabKey => {

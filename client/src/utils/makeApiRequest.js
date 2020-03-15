@@ -63,6 +63,7 @@ const makeApiRequest = async (type, url, auth = false, body = {}) => {
   } catch (error) {
     if (error.response && error.response.data) {
       if (error.response.status === 401) {
+        localStorage.removeItem("jwt");
         return {
           error: true,
           logout: true,

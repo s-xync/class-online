@@ -150,7 +150,9 @@ module.exports.login = async (req, res) => {
   const userExists = await User.findOne({ email });
 
   if (!userExists) {
-    throw boom.notFound("User not found. Please signup.");
+    throw boom.badData(
+      "User not found or password incorrect. Please try again."
+    );
   }
 
   if (userExists && !userExists.verified) {
@@ -161,7 +163,7 @@ module.exports.login = async (req, res) => {
 
   if (!isValid) {
     throw boom.badData(
-      "Incorrect password. Please check password and try again."
+      "User not found or password incorrect. Please try again."
     );
   }
 
