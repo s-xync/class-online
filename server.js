@@ -33,6 +33,10 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 const userRouter = require("./routes/user.routes");
 app.use("/api/v1/user", userRouter);
 
+// video routes
+const videoRouter = require("./routes/video.routes");
+app.use("/api/v1/video", videoRouter);
+
 app.get("*", (req, res) => {
   // react app entry point
   res.sendFile(path.join(__dirname + "/client/build/200.html"));
@@ -42,7 +46,7 @@ app.post("*", (req, res, next) => {
   return next(boom.notFound("Route Not Found"));
 });
 
-const errorHandler = require("./middleware/errorHandler.middleware");
+const errorHandler = require("./middlewares/errorHandler.middleware");
 app.use(errorHandler);
 
 app.listen(port, () => {

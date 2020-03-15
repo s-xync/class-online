@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const UserControllers = require("../controllers/user.controllers");
-const asyncHandler = require("../middleware/asyncHandler.middleware");
+const asyncHandler = require("../middlewares/asyncHandler.middleware");
 const { check } = require("express-validator");
 
 router.post(

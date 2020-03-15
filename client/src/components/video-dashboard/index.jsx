@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import makeApiRequest from "../../utils/makeApiRequest";
 
 class VideoDashboard extends Component {
   async componentDidMount() {
@@ -13,7 +14,18 @@ class VideoDashboard extends Component {
     await this.getAllVideos();
   }
 
-  getAllVideos = async () => {};
+  getAllVideos = async () => {
+    const videosResponse = await makeApiRequest(
+      "GET",
+      "api/v1/video/videos",
+      true
+    );
+    if (videosResponse.logout) {
+      this.props.history.push("/login");
+      return;
+    }
+    console.log(videosResponse.response);
+  };
 
   render() {
     return <h1>Video dashboard</h1>;
