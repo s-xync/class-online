@@ -5,7 +5,7 @@ const asyncHandler = fn => (req, res, next) => {
     if (err && err.isBoom) {
       return next(err);
     }
-    return next(boom.badImplementation(err));
+    return next(boom.badRequest(err));
   });
 };
 
