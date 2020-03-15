@@ -13,7 +13,10 @@ const defaultConfig = {
   JWT_SECRET: process.env.JWT_SECRET,
   MAILGUN_API_KEY: process.env.MAILGUN_API_KEY,
   MAILGUN_DOMAIN_NAME: process.env.MAILGUN_DOMAIN_NAME,
-  MAILGUN_FROM: process.env.MAILGUN_FROM
+  MAILGUN_FROM: process.env.MAILGUN_FROM,
+  AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+  AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  AWS_S3_BUCKET_NAME: process.env.AWS_S3_BUCKET_NAME
 };
 
 function envConfig(env) {
