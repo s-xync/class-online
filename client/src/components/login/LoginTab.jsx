@@ -11,7 +11,6 @@ class LoginTab extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log("hi");
     this.setState({ submitButtonDisabled: true });
   };
 

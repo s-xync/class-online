@@ -1,19 +1,19 @@
 import React from "react";
 import { FormGroup, Label, Input } from "reactstrap";
 
-const EmailField = ({ email, handleInputChange }) => (
+const OtpField = ({ otp, handleInputChange }) => (
   <FormGroup>
-    <Label className="input-label">Email</Label>
+    <Label className="input-label">OTP</Label>
     <Input
-      type="email"
-      name="email"
+      type="text"
+      name="otp"
       className="input-field"
-      placeholder="Please enter your email"
-      value={email}
+      placeholder="Please enter OTP send to your email"
+      value={otp}
       onChange={e => handleInputChange(e.target.name, e.target.value)}
       required
     />
   </FormGroup>
 );
 
-export default EmailField;
+export default OtpField;

@@ -58,10 +58,10 @@ const makeApiRequest = async (type, url, auth = false, body = {}) => {
       error: false,
       logout: false,
       message: response.data.message,
-      response
+      response: response.data
     };
   } catch (error) {
-    if (error.response && error.response.data && error.response.data.err) {
+    if (error.response && error.response.data) {
       if (error.response.status === 401) {
         return {
           error: true,
@@ -76,7 +76,7 @@ const makeApiRequest = async (type, url, auth = false, body = {}) => {
       };
     }
 
-    if (error.message && error.message === "Network Error") {
+    if (error.message && error.message.includes("Network Error")) {
       return {
         error: true,
         logout: false,

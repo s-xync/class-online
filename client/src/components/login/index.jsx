@@ -21,6 +21,7 @@ class Login extends Component {
     activeTab: "login",
     email: "",
     password: "",
+    otp: "",
     loginServerMessage: "",
     signupServerMessage: ""
   };
@@ -29,7 +30,6 @@ class Login extends Component {
     if (this.props.match.path.includes("signup")) {
       this.setState({ activeTab: "" });
     }
-    console.log({ path: this.props.match.path });
   }
 
   tabClickHandler = tabKey => {
@@ -44,6 +44,7 @@ class Login extends Component {
     const {
       email,
       password,
+      otp,
       loginServerMessage,
       signupServerMessage
     } = this.state;
@@ -97,6 +98,7 @@ class Login extends Component {
                           handleInputChange={this.handleInputChange}
                           email={email}
                           password={password}
+                          otp={otp}
                           serverMessage={signupServerMessage}
                         />
                       </TabPane>
