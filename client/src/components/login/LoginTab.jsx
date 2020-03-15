@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { CardBody, Form, FormGroup, Label, Input, Button } from "reactstrap";
+import { CardBody, Form, Button } from "reactstrap";
+import EmailField from "./EmailField";
+import PasswordField from "./PasswordField";
+import ServerMessage from "./ServerMessage";
 
 class LoginTab extends Component {
   state = {
@@ -14,44 +17,20 @@ class LoginTab extends Component {
 
   render() {
     const { submitButtonDisabled } = this.state;
-    const { email, password } = this.props;
+    const { email, password, serverMessage } = this.props;
     return (
       <CardBody>
         <div className="padded-card-body">
           <Form onSubmit={this.submitHandler}>
-            <FormGroup>
-              <Label for="email" className="input-label">
-                Email
-              </Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                className="input-field"
-                placeholder="Please enter your email"
-                value={email}
-                onChange={e =>
-                  this.props.handleInputChange(e.target.name, e.target.value)
-                }
-              />
-            </FormGroup>
+            <EmailField
+              email={email}
+              handleInputChange={this.props.handleInputChange}
+            />
             <br />
-            <FormGroup>
-              <Label for="password" className="input-label">
-                Password
-              </Label>
-              <Input
-                type="password"
-                name="password"
-                id="password"
-                className="input-field"
-                placeholder="Please enter your password"
-                value={password}
-                onChange={e =>
-                  this.props.handleInputChange(e.target.name, e.target.value)
-                }
-              />
-            </FormGroup>
+            <PasswordField
+              password={password}
+              handleInputChange={this.props.handleInputChange}
+            />
             <br />
             <div className="submit-button-outer">
               <Button
@@ -62,6 +41,7 @@ class LoginTab extends Component {
                 LOG IN
               </Button>
             </div>
+            {serverMessage && <ServerMessage serverMessage={serverMessage} />}
           </Form>
         </div>
       </CardBody>

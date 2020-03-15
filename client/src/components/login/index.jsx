@@ -17,7 +17,13 @@ import SignupTab from "./SignupTab";
 import "./styles/styles.css";
 
 class Login extends Component {
-  state = { activeTab: "login", email: "", password: "" };
+  state = {
+    activeTab: "login",
+    email: "",
+    password: "",
+    loginServerMessage: "",
+    signupServerMessage: ""
+  };
 
   componentDidMount() {
     if (this.props.match.path.includes("signup")) {
@@ -35,7 +41,12 @@ class Login extends Component {
   };
 
   render() {
-    const { email, password } = this.state;
+    const {
+      email,
+      password,
+      loginServerMessage,
+      signupServerMessage
+    } = this.state;
     const activeTab = this.props.match.path.includes("signup")
       ? "signup"
       : "login";
@@ -77,12 +88,16 @@ class Login extends Component {
                         <LoginTab
                           handleInputChange={this.handleInputChange}
                           email={email}
+                          password={password}
+                          serverMessage={loginServerMessage}
                         />
                       </TabPane>
                       <TabPane tabId="signup">
                         <SignupTab
                           handleInputChange={this.handleInputChange}
+                          email={email}
                           password={password}
+                          serverMessage={signupServerMessage}
                         />
                       </TabPane>
                     </TabContent>
