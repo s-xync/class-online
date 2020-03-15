@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import makeApiRequest from "../../utils/makeApiRequest";
 import Header from "./Header";
+import VideoUploader from "./VideoUploader";
+import CurrentVideoPlayer from "./CurrentVideoPlayer";
+import VideosList from "./VideosList";
 
 import "./styles/styles.css";
 
 class VideoDashboard extends Component {
+  state = {
+    videos: [],
+    currentVideo: {}
+  };
+
   async componentDidMount() {
     const jwt = localStorage.getItem("jwt");
     if (!jwt) {
@@ -27,11 +35,28 @@ class VideoDashboard extends Component {
       this.props.history.push("/login");
       return;
     }
-    console.log(videosResponse.response);
+    this.setState({ videos: videosResponse.response.videos });
+    if (videosResponse.response.videos.length) {
+      this.setState({ currentVideo: videosResponse.response.videos[0] });
+    }
+  };
+
+  changeRootState = (name, value) => {
+    this.setState({ [name]: value });
   };
 
   render() {
-    return <Header />;
+    const { currentVideo, videos } = this.state;
+    return (
+      <>
+        <Header />
+        <VideoUploader changeRootState={this.changeRootState} />
+        {currentVideo && currentVideo.location && (
+          <CurrentVideoPlayer currentVideo={currentVideo} />
+        )}
+        <VideosList videos={videos} changeRootState={this.changeRootState} />
+      </>
+    );
   }
 }
 

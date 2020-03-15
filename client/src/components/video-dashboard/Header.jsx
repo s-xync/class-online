@@ -11,7 +11,7 @@ class Header extends Component {
   render() {
     return (
       <>
-        <Container>
+        <Container fluid>
           <div className="video-dashboard-header">
             <h2 className="class-name">Example Class</h2>
             <Button

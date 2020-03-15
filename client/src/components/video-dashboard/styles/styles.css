@@ -15,3 +15,8 @@
   display: inline;
   color: #0051ff;
 }
+
+.video-uploader .upload-button {
+  color: white;
+  background-color: #2965e7;
+}
