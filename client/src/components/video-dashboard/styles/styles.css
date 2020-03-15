@@ -24,3 +24,25 @@
 .current-video-name {
   color: #0051ff;
 }
+
+.video-thumbnail-card {
+  cursor: pointer;
+  margin: 1rem 0;
+  padding: 6rem 3rem;
+  text-align: center;
+  background-color: #f1f1f1;
+  color: #0051ff;
+  transition: all 0.3s;
+}
+
+.video-thumbnail-card:hover {
+  transform: scale(1.02);
+}
+
+.video-thumbnail-card p {
+  font-size: 1.2rem;
+}
+
+.video-thumbnail-card i.fas.fa-play {
+  font-size: 4rem;
+}

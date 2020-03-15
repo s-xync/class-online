@@ -6,7 +6,6 @@ import "video-react/dist/video-react.css";
 class CurrentVideoPlayer extends Component {
   render() {
     const { currentVideo } = this.props;
-    console.log({ currentVideo });
     return (
       <Container className="mt-5">
         <Player playsInline src={currentVideo.location}>

@@ -35,6 +35,9 @@ class VideoDashboard extends Component {
       this.props.history.push("/login");
       return;
     }
+    if (videosResponse.error) {
+      return;
+    }
     this.setState({ videos: videosResponse.response.videos });
     if (videosResponse.response.videos.length) {
       this.setState({ currentVideo: videosResponse.response.videos[0] });
@@ -46,7 +49,7 @@ class VideoDashboard extends Component {
   };
 
   render() {
-    const { currentVideo, videos } = this.state;
+    const { currentVideo, videos, spinner } = this.state;
     return (
       <>
         <Header />
