@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import {
-  Container,
   Row,
   Col,
   Nav,
@@ -9,18 +8,16 @@ import {
   NavItem,
   TabContent,
   TabPane,
-  Card,
-  CardTitle,
-  CardBody,
-  CardText,
-  Button
+  Card
 } from "reactstrap";
 import classnames from "classnames";
+import LoginTab from "./LoginTab";
+import SignupTab from "./SignupTab";
 
 import "./styles/styles.css";
 
 class Login extends Component {
-  state = { activeTab: "login" };
+  state = { activeTab: "login", email: "", password: "" };
 
   componentDidMount() {
     if (this.props.match.path.includes("signup")) {
@@ -33,7 +30,12 @@ class Login extends Component {
     this.props.history.push(`/${tabKey}`);
   };
 
+  handleInputChange = (name, value) => {
+    this.setState({ [name]: value });
+  };
+
   render() {
+    const { email, password } = this.state;
     const activeTab = this.props.match.path.includes("signup")
       ? "signup"
       : "login";
@@ -72,14 +74,16 @@ class Login extends Component {
                     </Nav>
                     <TabContent activeTab={activeTab}>
                       <TabPane tabId="login">
-                        <CardBody>
-                          <h1>Login</h1>
-                        </CardBody>
+                        <LoginTab
+                          handleInputChange={this.handleInputChange}
+                          email={email}
+                        />
                       </TabPane>
                       <TabPane tabId="signup">
-                        <CardBody>
-                          <h1>Signup</h1>
-                        </CardBody>
+                        <SignupTab
+                          handleInputChange={this.handleInputChange}
+                          password={password}
+                        />
                       </TabPane>
                     </TabContent>
                   </Card>

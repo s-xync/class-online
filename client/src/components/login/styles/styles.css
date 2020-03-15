@@ -46,3 +46,33 @@
   font-weight: 500;
   color: #0051ff;
 }
+
+.padded-card-body {
+  padding: 2rem 3rem;
+}
+
+.padded-card-body .input-label {
+  font-size: 1.6rem;
+}
+
+.padded-card-body .input-field {
+  font-size: 1.4rem;
+  border-color: #0051ff;
+}
+
+.padded-card-body .submit-button-outer {
+  display: flex;
+  justify-content: center;
+}
+
+.padded-card-body .submit-button-outer .submit-button {
+  color: white;
+  background-color: #2965e7;
+  font-weight: bold;
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+}
+
+.padded-card-body .submit-button-outer .submit-button:focus {
+  box-shadow: none;
+}
