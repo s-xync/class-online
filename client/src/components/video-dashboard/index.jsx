@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import makeApiRequest from "../../utils/makeApiRequest";
+import Header from "./Header";
+
+import "./styles/styles.css";
 
 class VideoDashboard extends Component {
   async componentDidMount() {
@@ -28,7 +31,7 @@ class VideoDashboard extends Component {
   };
 
   render() {
-    return <h1>Video dashboard</h1>;
+    return <Header />;
   }
 }
 

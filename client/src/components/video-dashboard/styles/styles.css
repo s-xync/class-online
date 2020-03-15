@@ -1,0 +1,17 @@
+.video-dashboard-header {
+  padding: 0.5rem;
+}
+
+.video-dashboard-header .logout-button {
+  color: white;
+  background-color: #2965e7;
+}
+
+.video-dashboard-header .logout-button:focus {
+  box-shadow: none;
+}
+
+.video-dashboard-header .class-name {
+  display: inline;
+  color: #0051ff;
+}
