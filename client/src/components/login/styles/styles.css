@@ -76,3 +76,40 @@
 .padded-card-body .submit-button-outer .submit-button:focus {
   box-shadow: none;
 }
+
+.padded-card-body .validation-messages {
+  background-color: #2965e7;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+
+i.fas {
+  font-size: 1.2rem;
+}
+
+i.fas.fa-check-circle {
+  color: green;
+}
+
+i.fas.fa-times-circle {
+  color: red;
+}
+
+.padded-card-body .validation-messages {
+  color: white;
+  margin: 0rem;
+}
+
+.padded-card-body .validation-messages .validation-message {
+  display: flex;
+}
+
+.padded-card-body .validation-messages .validation-message span.fa-stack {
+  margin-right: 0.4rem;
+}
+
+.padded-card-body .validation-messages .validation-message p {
+  padding-top: 0.2rem;
+  margin-bottom: 0rem;
+}

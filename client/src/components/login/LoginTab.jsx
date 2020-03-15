@@ -15,6 +15,10 @@ class LoginTab extends Component {
     this.setState({ submitButtonDisabled: true });
   };
 
+  handleInputChange = (name, value) => {
+    this.props.handleInputChange(name, value);
+  };
+
   render() {
     const { submitButtonDisabled } = this.state;
     const { email, password, serverMessage } = this.props;
@@ -24,12 +28,12 @@ class LoginTab extends Component {
           <Form onSubmit={this.submitHandler}>
             <EmailField
               email={email}
-              handleInputChange={this.props.handleInputChange}
+              handleInputChange={this.handleInputChange}
             />
             <br />
             <PasswordField
               password={password}
-              handleInputChange={this.props.handleInputChange}
+              handleInputChange={this.handleInputChange}
             />
             <br />
             <div className="submit-button-outer">
