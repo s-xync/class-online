@@ -14,7 +14,6 @@ class SignupTab extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    console.log("hi");
     this.setState({ submitButtonDisabled: true });
     const { email, password } = this.props;
 
