@@ -18,7 +18,7 @@ const uri = constants.MONGO_URI;
 // connect to mongodb using monogoose
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useCreateIndex: true
+  useCreateIndex: true,
   // useUnifiedTopology: true
 });
 const connection = mongoose.connection;
@@ -27,7 +27,7 @@ connection.once("open", () => {
 });
 
 // Serve the static files from the React app
-app.use(express.static(path.join(__dirname, "/client/build")));
+// app.use(express.static(path.join(__dirname, "/client/build")));
 
 // user routes
 const userRouter = require("./routes/user.routes");
@@ -37,10 +37,10 @@ app.use("/api/v1/user", userRouter);
 const videoRouter = require("./routes/video.routes");
 app.use("/api/v1/video", videoRouter);
 
-app.get("*", (req, res) => {
-  // react app entry point
-  res.sendFile(path.join(__dirname + "/client/build/200.html"));
-});
+// app.get("*", (req, res) => {
+//   // react app entry point
+//   res.sendFile(path.join(__dirname + "/client/build/200.html"));
+// });
 
 app.post("*", (req, res, next) => {
   return next(boom.notFound("Route Not Found"));
