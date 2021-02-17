@@ -17,7 +17,7 @@ module.exports.signup = async (req, res) => {
     throw boom.badData(
       errors
         .array()
-        .map(error => error.msg)
+        .map((error) => error.msg)
         .join(" ")
     );
   }
@@ -35,19 +35,20 @@ module.exports.signup = async (req, res) => {
       from: constants.MAILGUN_FROM,
       to: userExists.email,
       subject: `Your OTP is ${otp}`,
-      text: `Your OTP for Class Online is ${otp}`
+      text: `Your OTP for Class Online is ${otp}`,
     };
 
     try {
       await mailgunHelper.messages().send(mailData);
     } catch (err) {
+      console.log(err);
       throw boom.badRequest(
         "User already exists. But unable to send OTP to this email."
       );
     }
 
     return res.json({
-      message: "User already exists. OTP sent to your email."
+      message: "User already exists. OTP sent to your email.",
     });
   }
 
@@ -65,17 +66,18 @@ module.exports.signup = async (req, res) => {
     from: constants.MAILGUN_FROM,
     to: user.email,
     subject: `Your OTP is ${otp}`,
-    text: `Your OTP for Class Online is ${otp}`
+    text: `Your OTP for Class Online is ${otp}`,
   };
 
   try {
     await mailgunHelper.messages().send(mailData);
   } catch (err) {
+    console.log(err);
     throw boom.badRequest("User created but unable to send OTP to this email.");
   }
 
   return res.json({
-    message: "User created successfully. OTP sent to your email."
+    message: "User created successfully. OTP sent to your email.",
   });
 };
 
@@ -86,7 +88,7 @@ module.exports.verifyOtp = async (req, res) => {
     throw boom.badData(
       errors
         .array()
-        .map(error => error.msg)
+        .map((error) => error.msg)
         .join(" ")
     );
   }
@@ -100,7 +102,7 @@ module.exports.verifyOtp = async (req, res) => {
   if (userExists && !userExists.verified) {
     const isValid = otplibAuthenticator.verify({
       token: otp,
-      secret: userExists.email
+      secret: userExists.email,
     });
 
     if (!isValid) {
@@ -120,7 +122,7 @@ module.exports.verifyOtp = async (req, res) => {
     return res.json({
       message: "Registered successfully. Logged in successfully.",
       user: userExists,
-      jwt: jwtToken
+      jwt: jwtToken,
     });
   }
 
@@ -138,7 +140,7 @@ module.exports.login = async (req, res) => {
     throw boom.badData(
       errors
         .array()
-        .map(error => error.msg)
+        .map((error) => error.msg)
         .join(" ")
     );
   }
@@ -176,6 +178,6 @@ module.exports.login = async (req, res) => {
   return res.json({
     message: "Logged in successfully.",
     user: userExists,
-    jwt: jwtToken
+    jwt: jwtToken,
   });
 };
