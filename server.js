@@ -2,12 +2,16 @@ const express = require("express");
 const mongoose = require("mongoose");
 const boom = require("boom");
 const path = require("path");
+const cors = require("cors");
 
 const constants = require("./config/constants");
 
 const app = express();
 
 const port = constants.PORT;
+
+// allow cross origin resource sharing for react app
+app.use(cors());
 
 // configure bodyparser
 app.use(express.urlencoded({ extended: true }));
