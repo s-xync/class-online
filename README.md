@@ -35,6 +35,7 @@ Few more things to keep in mind:
 - Mailgun api key can be found in top right user icon -> API Keys -> Private API Key
 - Remember to increase nginx file upload limit -> https://stackoverflow.com/a/26717238/10345461
 - pm2 can be used to host this.
+- Also, MAILGUN_FROM takes a particular format (as given above). Keep this format. If you are using export command to set the environment variable, you can just do export MAILGUN_FROM='ABC XYZ <email id>' or export MAILGUN_FROM='"ABC XYZ" <email id>' (whatever works.)
 
 cd client
 yarn install
