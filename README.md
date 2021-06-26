@@ -28,6 +28,14 @@ AWS_SECRET_ACCESS_KEY=<AWS_SECRET_ACCESS_KEY>
 AWS_S3_BUCKET_NAME=<AWS_S3_BUCKET_NAME>
 " > .env
 
+Few more things to keep in mind:
+- Make sure that the S3 bucket is public. Each file in this bucket will be publicly accessible. Apis will fail if the bucket is not public.
+- Preferably, create a separate user in AWS IAM with access only to this public bucket, and give the credentials of this user in the above AWS access key id and AWS secret access key.
+- Mailgun domain name can be found in their portal. Life side menu -> Sending -> Domains.
+- Mailgun api key can be found in top right user icon -> API Keys -> Private API Key
+- Remember to increase nginx file upload limit -> https://stackoverflow.com/a/26717238/10345461
+- pm2 can be used to host this.
+
 cd client
 yarn install
 
